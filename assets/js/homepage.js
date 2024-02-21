@@ -9,7 +9,7 @@ var formSubmitHandler = function (event) {
     var citySearch = cityInputEl.value.trim();
   
     if (citySearch) {
-      getCityWeather(citySearch);
+      getCityCoordinates(citySearch);
   
       forecastContainerEl.textContent = '';
       cityInputEl.value = '';
@@ -20,7 +20,6 @@ var formSubmitHandler = function (event) {
 
   var getCityCoordinates = function (coordinates) {
     var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInputEl}&limit=1&appid=9f1308e7de8b872120cfd60501fcdbcb`
-    console.log(results);
 
     fetch(apiUrl)
         .then(function (response) {
@@ -36,6 +35,8 @@ var formSubmitHandler = function (event) {
             alert('Unable to get city coordinates');
         });
   };
+
+
 
 
   
