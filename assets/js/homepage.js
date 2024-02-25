@@ -1,7 +1,10 @@
 var searchFormEL = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#city');
-var forecastContainerEl = document.querySelector('#forecast-container');
-var fiveDayForecast = document.querySelector('#five-day-forecast');
+var currentWeather = document.querySelector('.current-weather');
+var cityName = document.querySelector('.city-name');
+var temp = document.querySelector('#temp');
+var windSpeed = document.querySelector('.wind-speed');
+var humidity = document.querySelector('#humidity');
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
@@ -9,23 +12,23 @@ var formSubmitHandler = function (event) {
     var citySearch = cityInputEl.value.trim();
   
     if (citySearch) {
+      console.log(citySearch);
       getCityCoordinates(citySearch);
-  
-      forecastContainerEl.textContent = '';
-      cityInputEl.value = '';
+
     } else {
       alert('Please enter a valid city name.');
     }
   };
 
   var getCityCoordinates = function (coordinates) {
-    var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInputEl}&limit=1&appid=9f1308e7de8b872120cfd60501fcdbcb`
-
+    var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${coordinates}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
+    console.log("here");
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-                    getCityWeather(data, coordinates);
+                  getCurrentWeather(data);
+                    // getCityWeather(data, coordinates);
                 });
             }   else {
                 alert('Error: ' + response.statusText);
@@ -35,6 +38,18 @@ var formSubmitHandler = function (event) {
             alert('Unable to get city coordinates');
         });
   };
+
+  var getCurrentWeather = function (data) {
+      console.log(data);
+      cityName.textContent = data.city.name;
+      temp.textContent = `temp: ${data.list[0].main.temp} degrees`;
+      windSpeed.textContext = `wind: ${data.list[0].wind.speed} mph`;
+      console.log(data.list[0].wind.speed);
+      humidity.textContent = `humidity: ${data.list[0].main.humidity}%`;
+
+  };
+
+  searchFormEL.addEventListener("submit", formSubmitHandler);
 
 
 
