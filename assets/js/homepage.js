@@ -22,8 +22,8 @@ var formSubmitHandler = function (event) {
   }
 };
 
-var getCityCoordinates = function (coordinates) {
-  var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${coordinates}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
+var getCityCoordinates = function (cityName) {
+  var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   console.log("here");
   fetch(apiUrl)
     .then(function (response) {
@@ -44,14 +44,14 @@ var getCurrentWeather = function (data) {
   console.log(data);
   cityName.textContent = data.city.name;
   temp.textContent = `temp: ${data.list[0].main.temp} degrees`;
-  windSpeed.textContext = `wind: ${data.list[0].wind.speed} mph`;
+  windSpeed.textContent = `wind: ${data.list[0].wind.speed} mph`;
   console.log(data.list[0].wind.speed);
   humidity.textContent = `humidity: ${data.list[0].main.humidity}%`;
 
 };
 
-var getForecast = function (coordinates) {
-  var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${coordinates}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
+var getForecast = function (cityName) {
+  var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   console.log("here");
   fetch(apiUrl)
     .then(function (response) {
@@ -69,14 +69,14 @@ var getForecast = function (coordinates) {
 };
 
 var getFiveDay = function (data) {
-  console.log(data);
-  for (var i = 0; i < data.list.length; i++) {
+  console.log("Forecast data:", data);
+  for (var i = 0; i < data.list.length; i += 8) {
     var tempFive = document.createElement('p');
     var windSpeedFive = document.createElement('p');
     var humidityFive= document.createElement('p');
-    tempFive.textContent = `temp: ${data.list[0].main.temp} degrees`;
-    windSpeedFive.textContent = `wind: ${data.list[0].wind.speed} mph`;
-    humidityFive.textContent = `humidity: ${data.list[0].main.humidity}%`;
+    tempFive.textContent = `temp: ${data.list[i].main.temp} degrees`;
+    windSpeedFive.textContent = `wind: ${data.list[i].wind.speed} mph`;
+    humidityFive.textContent = `humidity: ${data.list[i].main.humidity}%`;
     forecastContainer.append(tempFive);
     forecastContainer.append(windSpeedFive);
     forecastContainer.append(humidityFive);

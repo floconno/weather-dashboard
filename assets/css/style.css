@@ -35,6 +35,7 @@ h3 {
 }
 
 .search {
+    display: flex;
     flex-direction: column;
     justify-content: start;
     padding-left: 8px;
