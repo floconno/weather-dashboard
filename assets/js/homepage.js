@@ -109,7 +109,9 @@ var getFiveDay = function (data) {
 
 searchFormEL.addEventListener("submit", formSubmitHandler);
 
-
+// TODO: save previous city searches to local storage
+// style cards
+// style search area
 
 
 
