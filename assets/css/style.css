@@ -48,3 +48,13 @@ h3 {
     padding-left: 40px;
 }
 
+#forecast-container {
+    display: flex;
+
+}
+
+.five-day-weather {
+    width: 11rem;
+    margin: 5px;
+    border: 2px solid #000;
+}
