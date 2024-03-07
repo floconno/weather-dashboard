@@ -45,11 +45,11 @@ var getCurrentWeather = function (data) {
   var lat = data.coord.lat
   var lon = data.coord.lon
   getForecast(lat, lon)
-  cityName.textContent = cityName.input;
-  temp.textContent = `temp: ${data.list[0].main.temp} degrees`;
-  windSpeed.textContent = `wind: ${data.list[0].wind.speed} mph`;
-  console.log(data.list[0].wind.speed);
-  humidity.textContent = `humidity: ${data.list[0].main.humidity}%`;
+  cityName.textContent = data.name;
+  temp.textContent = `temp: ${data.main.temp} degrees`;
+  windSpeed.textContent = `wind: ${data.wind.speed} mph`;
+  // console.log(data.list[0].wind.speed);
+  humidity.textContent = `humidity: ${data.main.humidity}%`;
 
 };
 
