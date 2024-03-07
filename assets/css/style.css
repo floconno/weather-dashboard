@@ -43,14 +43,14 @@ h3 {
 }
 
 .forecast {
-    flex-direction: column;
+    flex-direction: row;
     justify-content: start;
     padding-left: 40px;
 }
 
 #forecast-container {
     display: flex;
-
+    flex-direction: row;
 }
 
 .five-day-weather {
