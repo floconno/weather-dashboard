@@ -2,6 +2,7 @@ var searchFormEL = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#city');
 var currentWeather = document.querySelector('.current-weather');
 var cityName = document.querySelector('.city-name');
+var icon = document.querySelector('#icon');
 var temp = document.querySelector('#temp');
 var windSpeed = document.querySelector('.wind-speed');
 var humidity = document.querySelector('#humidity');
@@ -20,6 +21,7 @@ var formSubmitHandler = function (event) {
   } else {
     alert('Please enter a valid city name.');
   }
+  localStorage.setItem("city", citySearch);
 };
 
 var getCityCoordinates = function (cityName) {
@@ -44,8 +46,10 @@ var getCurrentWeather = function (data) {
   console.log(data);
   var lat = data.coord.lat
   var lon = data.coord.lon
+  // var iconPic = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   getForecast(lat, lon)
   cityName.textContent = data.name;
+  // icon.textContent = iconPic;
   temp.textContent = `temp: ${data.main.temp} degrees`;
   windSpeed.textContent = `wind: ${data.wind.speed} mph`;
   // console.log(data.list[0].wind.speed);
@@ -112,6 +116,8 @@ searchFormEL.addEventListener("submit", formSubmitHandler);
 // TODO: save previous city searches to local storage
 // style cards
 // style search area
+
+
 
 
 
