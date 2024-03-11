@@ -46,31 +46,18 @@ var getCurrentWeather = function (data) {
   console.log(data);
   var lat = data.coord.lat
   var lon = data.coord.lon
-  // var iconPic = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   getForecast(lat, lon)
   cityName.textContent = data.name;
-  // icon.textContent = iconPic;
   temp.textContent = `temp: ${data.main.temp} degrees`;
   windSpeed.textContent = `wind: ${data.wind.speed} mph`;
-  // console.log(data.list[0].wind.speed);
   humidity.textContent = `humidity: ${data.main.humidity}%`;
 
 };
 
 var getForecast = function (lat, lon) {
-  // var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   console.log("here");
   fetch(apiUrl)
-    // .then(function (response) {
-    //   if (response.ok) {
-    //     response.json().then(function (data) {
-    //       getFiveDay(data);
-    //     });
-    //   } else {
-    //     alert('Error: ' + response.statusText);
-    //   }
-    // })
     .then(function (response) {
       return response.json()
     })
@@ -84,7 +71,6 @@ var getForecast = function (lat, lon) {
 
 var getFiveDay = function (data) {
   console.log("Forecast data:", data);
-  // var currentTime = data.list.dt_txt.split(" ")[1].split(":")[0]
   for (var i = 0; i < data.list.length; i += 8) {
     var htmlCard = `
     <div class="five-day-weather">
@@ -97,16 +83,6 @@ var getFiveDay = function (data) {
     var htmlEl = document.createElement('section')
     htmlEl.innerHTML = htmlCard
     forecastContainer.appendChild(htmlEl)
-    // console.log(data.list[i]);
-    // var tempFive = document.createElement('p');
-    // var windSpeedFive = document.createElement('p');
-    // var humidityFive = document.createElement('p');
-    // tempFive.textContent = `temp: ${data.list[i].main.temp} degrees`;
-    // windSpeedFive.textContent = `wind: ${data.list[i].wind.speed} mph`;
-    // humidityFive.textContent = `humidity: ${data.list[i].main.humidity}%`;
-    // forecastContainer.append(tempFive);
-    // forecastContainer.append(windSpeedFive);
-    // forecastContainer.append(humidityFive);
   }
 };
 
