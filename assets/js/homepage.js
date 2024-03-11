@@ -8,6 +8,7 @@ var windSpeed = document.querySelector('.wind-speed');
 var humidity = document.querySelector('#humidity');
 var forecast = document.querySelector('.forecast');
 var forecastContainer = document.querySelector('#forecast-container');
+// var data = JSON.parse(localStorage.getItem("current"));
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -40,6 +41,8 @@ var getCityCoordinates = function (cityName) {
     .catch(function (error) {
       alert('Unable to get city coordinates');
     });
+
+    
 };
 
 var getCurrentWeather = function (data) {
@@ -52,6 +55,7 @@ var getCurrentWeather = function (data) {
   windSpeed.textContent = `wind: ${data.wind.speed} mph`;
   humidity.textContent = `humidity: ${data.main.humidity}%`;
 
+  // localStorage.setItem("current", JSON.stringify(data));
 };
 
 var getForecast = function (lat, lon) {
