@@ -25,7 +25,7 @@ var formSubmitHandler = function (event) {
 };
 
 var getCityCoordinates = function (cityName) {
-  var apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   console.log("here");
   fetch(apiUrl)
     .then(function (response) {
@@ -55,7 +55,7 @@ var getCurrentWeather = function (data) {
 };
 
 var getForecast = function (lat, lon) {
-  var apiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
+  var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d50b5cd718f93a672cf5ded5abca6de9&units=imperial`
   console.log("here");
   fetch(apiUrl)
     .then(function (response) {
